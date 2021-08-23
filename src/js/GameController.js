@@ -115,9 +115,7 @@ export default class GameController {
     // Если ходить на данную ячейку нельзя -  уведомление пользователю об этом.
     if (!this.stepIsPossible && !isCharacter && this.selectedChar) {
       this.gamePlay.showTooltip(
-        "Information",
-        "Impossible to go here!",
-        "warning"
+        "Information", "Impossible to go here!", "warning"
       );
       return;
     }
@@ -141,9 +139,7 @@ export default class GameController {
     // Если клик был произведен по ячейке с неигровым персонажей, уведомление пользователю
     if (isCharacter && !currentChar.character.isPlayer) {
       this.gamePlay.showTooltip(
-        'Information',
-        'This is not a playable character!',
-        'danger'
+        'Information', 'This is not a playable character!', 'danger'
       );
     }
   }
@@ -374,7 +370,7 @@ export default class GameController {
     }
     this.prevSelectedCharIndex = null;
     this.gamePlay.cells.forEach((cell) =>
-      cell.classList.remove("selected-yellow")
+      cell.classList.remove('selected-yellow')
     );
     this.gamePlay.redrawPositions(this.state.teams);
     if (this.selectedChar) {
@@ -464,7 +460,7 @@ export default class GameController {
     this.clickOnCells();
     this.overOnCells();
     this.leaveOnCells();
-    this.gamePlay.showTooltip("Information", "Next level", "info");
+    this.gamePlay.showTooltip('Information', 'Next level', 'info');
   }
 
   // Конец игры
@@ -482,7 +478,7 @@ export default class GameController {
       numberOfPoints: newPoints,
     });
     this.renderScore();
-    GamePlay.showMessage("You Won!");
+    GamePlay.showMessage('You Won!');
     this.gamePlay.unsubscribeAllMouseListeners();
   }
 
