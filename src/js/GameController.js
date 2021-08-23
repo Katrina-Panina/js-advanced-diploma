@@ -1,11 +1,11 @@
-import { generateTeam, generateCoordinates } from "./generators";
-import { isAttackPossible, isStepPossible } from "./utils";
-import cursors from "./cursors";
-import themes from "./themes";
-import Team from "./Team";
+import { generateTeam, generateCoordinates } from './generators';
+import { isAttackPossible, isStepPossible } from './utils';
+import cursors from './cursors';
+import themes from './themes';
+import Team from './Team';
 import GamePlay from "./GamePlay";
-import GameState from "./GameState";
-import Character from "./Character";
+import GameState from './GameState';
+import Character from './Character';
 
 export default class GameController {
   constructor(gamePlay, stateService) {
@@ -32,10 +32,7 @@ export default class GameController {
 
   prepareGame() {
     const playerTeams = generateTeam(
-      new Team().playerTeams,
-      1,
-      2,
-      this.gamePlay.boardSize
+      new Team().playerTeams, 1, 2, this.gamePlay.boardSize
     );
     const npcTeams = generateTeam(
       new Team().npcTeams,
