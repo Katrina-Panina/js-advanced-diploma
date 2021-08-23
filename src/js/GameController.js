@@ -1,11 +1,11 @@
-import { generateTeam, generateCoordinates } from "./generators";
-import { isAttackPossible, isStepPossible } from "./utils";
-import cursors from "./cursors";
-import themes from "./themes";
-import Team from "./Team";
-import GamePlay from "./GamePlay";
-import GameState from "./GameState";
-import Character from "./Character";
+import { generateTeam, generateCoordinates } from './generators';
+import { isAttackPossible, isStepPossible } from './ut'ils';
+import cursors from './cursors';
+import themes from './themes';
+import Team from './Team';
+import GamePlay from './GamePlay';
+import GameState from './GameState';
+import Character from './Character';
 
 export default class GameController {
   constructor(gamePlay, stateService) {
@@ -122,9 +122,9 @@ export default class GameController {
     // Если ходить на данную ячейку нельзя -  уведомление пользователю об этом.
     if (!this.stepIsPossible && !isCharacter && this.selectedChar) {
       this.gamePlay.showTooltip(
-        "Information",
-        "Impossible to go here!",
-        "warning"
+        'Information',
+        'Impossible to go here!',
+        'warning'
       );
       return;
     }
@@ -141,16 +141,16 @@ export default class GameController {
 
     // Если range атаки не достаточно, уведомление о том что атаковать врага нельзя.
     if (isCharacter && this.selectedChar && !currentChar.character.isPlayer) {
-      this.gamePlay.showTooltip("Information", "To far...", "warning");
+      this.gamePlay.showTooltip('Information', 'To far...', 'warning');
       return;
     }
 
     // Если клик был произведен по ячейке с неигровым персонажей, уведомление пользователю
     if (isCharacter && !currentChar.character.isPlayer) {
       this.gamePlay.showTooltip(
-        "Information",
-        "This is not a playable character!",
-        "danger"
+        'Information',
+        'This is not a playable character!',
+        'danger'
       );
     }
   }
@@ -188,7 +188,7 @@ export default class GameController {
         // Если дистанция атаки позволяет атаковать, изменяем курсор и подсветку ячейки
         if (this.attackIsPossible) {
           this.gamePlay.setCursor(cursors.crosshair);
-          this.gamePlay.selectCell(index, "red");
+          this.gamePlay.selectCell(index, 'red');
         } else {
           this.gamePlay.setCursor(cursors.notallowed);
         }
@@ -200,7 +200,7 @@ export default class GameController {
   onCellLeave(index) {
     this.gamePlay.setCursor(cursors.pointer);
     this.gamePlay.cells.forEach((cell) =>
-      cell.classList.remove("selected-green", "selected-red")
+      cell.classList.remove('selected-green', 'selected-red')
     );
     this.gamePlay.hideCellTooltip(index);
   }
@@ -213,12 +213,12 @@ export default class GameController {
     this.overOnCells();
     this.leaveOnCells();
     this.renderScore();
-    this.gamePlay.showTooltip("Information", "A new game has begun", "info");
+    this.gamePlay.showTooltip('Information', 'A new game has begun', 'info');
   }
 
   // Сохранить игру
   onSaveGame() {
-    this.gamePlay.showTooltip("Information", "Game saved", "info");
+    this.gamePlay.showTooltip('Information', 'Game saved', 'info');
     this.stateService.save(this.state);
   }
 
@@ -229,7 +229,7 @@ export default class GameController {
     try {
       loadState = this.stateService.load();
     } catch (e) {
-      this.gamePlay.showTooltip("Information", e, "danger");
+      this.gamePlay.showTooltip('Information', e, 'danger');
       return;
     }
     loadState.teams = loadState.teams.reduce((acc, prev) => {
@@ -246,7 +246,7 @@ export default class GameController {
     this.gamePlay.drawUi(themes[loadState.currentLevel - 1]);
     this.gamePlay.redrawPositions(this.state.teams);
     this.renderScore();
-    this.gamePlay.showTooltip("Information", "Game loaded", "info");
+    this.gamePlay.showTooltip('Information', 'Game loaded', 'info');
   }
 
   // Универсальная атака для игрока и npc
@@ -367,9 +367,9 @@ export default class GameController {
     if (!this.getNPCTeam().length) {
       this.gamePlay.cells.forEach((cell) =>
         cell.classList.remove(
-          "selected-yellow",
-          "selected-green",
-          "selected-red"
+          'selected-yellow',
+          'selected-green',
+          'selected-red'
         )
       );
       this.gamePlay.setCursor(cursors.auto);
@@ -471,7 +471,7 @@ export default class GameController {
     this.clickOnCells();
     this.overOnCells();
     this.leaveOnCells();
-    this.gamePlay.showTooltip("Information", "Next level", "info");
+    this.gamePlay.showTooltip('Information', 'Next level', 'info');
   }
 
   // Конец игры
@@ -489,16 +489,16 @@ export default class GameController {
       numberOfPoints: newPoints,
     });
     this.renderScore();
-    GamePlay.showMessage("You Won!");
+    GamePlay.showMessage('You Won!');
     this.gamePlay.unsubscribeAllMouseListeners();
   }
 
   // Рендер очков
   renderScore() {
-    const levelElement = this.gamePlay.container.querySelector(".level-value");
-    const scoreElement = this.gamePlay.container.querySelector(".score-value");
+    const levelElement = this.gamePlay.container.querySelector('.level-value');
+    const scoreElement = this.gamePlay.container.querySelector('.score-value');
     const recordElement =
-      this.gamePlay.container.querySelector(".record-value");
+      this.gamePlay.container.querySelector('.record-value');
     levelElement.textContent = this.state.currentLevel;
     scoreElement.textContent = this.state.numberOfPoints;
     const newRecord =
