@@ -1,11 +1,11 @@
-import { generateTeam, generateCoordinates } from './generators';
-import { isAttackPossible, isStepPossible } from './utils';
-import cursors from './cursors';
-import themes from './themes';
-import Team from './Team/';
-import GamePlay from './GamePlay';
-import GameState from './GameState';
-import Character from './Character';
+import { generateTeam, generateCoordinates } from "./generators";
+import { isAttackPossible, isStepPossible } from "./utils";
+import cursors from "./cursors";
+import themes from "./themes";
+import Team from "./Team";
+import GamePlay from "./GamePlay";
+import GameState from "./GameState";
+import Character from "./Character";
 
 export default class GameController {
   constructor(gamePlay, stateService) {
@@ -101,7 +101,7 @@ export default class GameController {
       if (currentChar && currentChar.character.isPlayer) {
         this.selectedChar = currentChar;
         this.gamePlay.cells.forEach((cell) =>
-          cell.classList.remove('selected-yellow')
+          cell.classList.remove("selected-yellow")
         );
         this.gamePlay.selectCell(index);
         this.prevSelectedCharIndex = index;
@@ -122,9 +122,9 @@ export default class GameController {
     // Если ходить на данную ячейку нельзя -  уведомление пользователю об этом.
     if (!this.stepIsPossible && !isCharacter && this.selectedChar) {
       this.gamePlay.showTooltip(
-        'Information',
-        'Impossible to go here!',
-        'warning'
+        "Information",
+        "Impossible to go here!",
+        "warning"
       );
       return;
     }
@@ -141,16 +141,16 @@ export default class GameController {
 
     // Если range атаки не достаточно, уведомление о том что атаковать врага нельзя.
     if (isCharacter && this.selectedChar && !currentChar.character.isPlayer) {
-      this.gamePlay.showTooltip('Information', 'To far...', 'warning');
+      this.gamePlay.showTooltip("Information", "To far...", "warning");
       return;
     }
 
     // Если клик был произведен по ячейке с неигровым персонажей, уведомление пользователю
     if (isCharacter && !currentChar.character.isPlayer) {
       this.gamePlay.showTooltip(
-        'Information',
-        'This is not a playable character!',
-        'danger'
+        "Information",
+        "This is not a playable character!",
+        "danger"
       );
     }
   }
