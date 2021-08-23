@@ -3,7 +3,7 @@ import { isAttackPossible, isStepPossible } from './utils';
 import cursors from './cursors';
 import themes from './themes';
 import Team from './Team';
-import GamePlay from "./GamePlay";
+import GamePlay from './GamePlay';
 import GameState from './GameState';
 import Character from './Character';
 
@@ -32,13 +32,9 @@ export default class GameController {
 
   prepareGame() {
     const playerTeams = generateTeam(
-      new Team().playerTeams, 1, 2, this.gamePlay.boardSize
-    );
+      new Team().playerTeams, 1, 2, this.gamePlay.boardSize);
     const npcTeams = generateTeam(
-      new Team().npcTeams,
-      1,
-      2,
-      this.gamePlay.boardSize
+      new Team().npcTeams, 1, 2, this.gamePlay.boardSize
     );
     this.updateState({
       currentLevel: 1,
@@ -138,16 +134,16 @@ export default class GameController {
 
     // Если range атаки не достаточно, уведомление о том что атаковать врага нельзя.
     if (isCharacter && this.selectedChar && !currentChar.character.isPlayer) {
-      this.gamePlay.showTooltip("Information", "To far...", "warning");
+      this.gamePlay.showTooltip('Information', 'To far...', 'warning');
       return;
     }
 
     // Если клик был произведен по ячейке с неигровым персонажей, уведомление пользователю
     if (isCharacter && !currentChar.character.isPlayer) {
       this.gamePlay.showTooltip(
-        "Information",
-        "This is not a playable character!",
-        "danger"
+        'Information',
+        'This is not a playable character!',
+        'danger'
       );
     }
   }
@@ -166,7 +162,7 @@ export default class GameController {
       );
       // Если true подсвечиваем ячейку и меняем курсор
       if (this.stepIsPossible) {
-        this.gamePlay.selectCell(index, "green");
+        this.gamePlay.selectCell(index, 'green');
         this.gamePlay.setCursor(cursors.pointer);
       }
     }
@@ -185,7 +181,7 @@ export default class GameController {
         // Если дистанция атаки позволяет атаковать, изменяем курсор и подсветку ячейки
         if (this.attackIsPossible) {
           this.gamePlay.setCursor(cursors.crosshair);
-          this.gamePlay.selectCell(index, "red");
+          this.gamePlay.selectCell(index, 'red');
         } else {
           this.gamePlay.setCursor(cursors.notallowed);
         }
@@ -197,7 +193,7 @@ export default class GameController {
   onCellLeave(index) {
     this.gamePlay.setCursor(cursors.pointer);
     this.gamePlay.cells.forEach((cell) =>
-      cell.classList.remove("selected-green", "selected-red")
+      cell.classList.remove('selected-green', 'selected-red')
     );
     this.gamePlay.hideCellTooltip(index);
   }
@@ -210,12 +206,12 @@ export default class GameController {
     this.overOnCells();
     this.leaveOnCells();
     this.renderScore();
-    this.gamePlay.showTooltip("Information", "A new game has begun", "info");
+    this.gamePlay.showTooltip('Information', 'A new game has begun', 'info');
   }
 
   // Сохранить игру
   onSaveGame() {
-    this.gamePlay.showTooltip("Information", "Game saved", "info");
+    this.gamePlay.showTooltip('Information', 'Game saved', 'info');
     this.stateService.save(this.state);
   }
 
@@ -226,7 +222,7 @@ export default class GameController {
     try {
       loadState = this.stateService.load();
     } catch (e) {
-      this.gamePlay.showTooltip("Information", e, "danger");
+      this.gamePlay.showTooltip('Information', e, 'danger');
       return;
     }
     loadState.teams = loadState.teams.reduce((acc, prev) => {
@@ -243,7 +239,7 @@ export default class GameController {
     this.gamePlay.drawUi(themes[loadState.currentLevel - 1]);
     this.gamePlay.redrawPositions(this.state.teams);
     this.renderScore();
-    this.gamePlay.showTooltip("Information", "Game loaded", "info");
+    this.gamePlay.showTooltip('Information', 'Game loaded', 'info');
   }
 
   // Универсальная атака для игрока и npc
