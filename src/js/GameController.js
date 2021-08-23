@@ -30,9 +30,8 @@ export default class GameController {
     this.renderScore();
   }
 
-  prepareGame() {
-    const playerTeams = generateTeam(
-      new Team().playerTeams, 1, 2, this.gamePlay.boardSize);
+  prepareGame() {const playerTeams = generateTeam(
+new Team().playerTeams, 1, 2, this.gamePlay.boardSize);
     const npcTeams = generateTeam(
       new Team().npcTeams, 1, 2, this.gamePlay.boardSize
     );
