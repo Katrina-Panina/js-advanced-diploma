@@ -109,7 +109,7 @@ export default class GameController {
 
     // Если ходить на данную ячейку нельзя -  уведомление пользователю об этом.
     if (!this.stepIsPossible && !isCharacter && this.selectedChar) {
-      this.gamePlay.showTooltip("Information", "Impossible to go here!", "warning");
+      this.gamePlay.showTooltip('Information', 'Impossible to go here!', 'warning');
       return;
     }
 
@@ -175,9 +175,7 @@ export default class GameController {
   // Выход курсора с ячейки
   onCellLeave(index) {
     this.gamePlay.setCursor(cursors.pointer);
-    this.gamePlay.cells.forEach((cell) =>
-      cell.classList.remove('selected-green', 'selected-red')
-    );
+    this.gamePlay.cells.forEach((cell) => cell.classList.remove('selected-green', 'selected-red'));
     this.gamePlay.hideCellTooltip(index);
   }
 
@@ -264,11 +262,7 @@ export default class GameController {
     const canAttackEnemies = npcTeam.reduce((acc, prev) => {
       const playerChar = [];
       playerTeam.forEach((userChar, index) => {
-        const canAttack = isAttackPossible(
-          prev.position,
-          userChar.position,
-          prev.character.range
-        );
+        const canAttack = isAttackPossible(prev.position, userChar.position, prev.character.range);
         if (canAttack) {
           playerChar.push(playerTeam[index]);
         }
@@ -288,9 +282,7 @@ export default class GameController {
     // иначе находим куда можем сходить
     if (attacker) {
       const defender =
-        attacker.playerChar[
-          Math.floor(Math.random() * attacker.playerChar.length)
-        ];
+        attacker.playerChar[Math.floor(Math.random() * attacker.playerChar.length)];
       this.attackTheEnemy(attacker.npc, defender);
     } else {
       const npc = npcTeam[Math.floor(Math.random() * npcTeam.length)];
