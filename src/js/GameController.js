@@ -327,7 +327,9 @@ export default class GameController {
     }
     // Если все чары npc убиты, начинаем новый левел
     if (!this.getNPCTeam().length) {
-      this.gamePlay.cells.forEach((cell) => cell.classList.remove('selected-yellow','selected-green','selected-red'));
+      this.gamePlay.cells.forEach((cell) => 
+      cell.classList.remove('selected-yellow','selected-green','selected-red')
+      );
       this.gamePlay.setCursor(cursors.auto);
       this.updateState({
         playerTurn: false,
@@ -374,8 +376,7 @@ export default class GameController {
     });
     this.renderScore();
     const playerCoordinates = generateCoordinates(
-      "player",
-      this.gamePlay.boardSize
+      'player', this.gamePlay.boardSize
     );
     const levelUpTeams = this.state.teams.reduce((acc, prev) => {
       prev.character.levelUp();
