@@ -31,8 +31,7 @@ export default class GameController {
   }
 
   prepareGame() {const playerTeams = generateTeam(new Team().playerTeams, 1, 2, this.gamePlay.boardSize);
-    const npcTeams = generateTeam(new Team().npcTeams, 1, 2, this.gamePlay.boardSize
-    );
+    const npcTeams = generateTeam(new Team().npcTeams, 1, 2, this.gamePlay.boardSize);
     this.updateState({
       currentLevel: 1,
       teams: [...playerTeams, ...npcTeams],
