@@ -1,4 +1,4 @@
-import PositionedCharacter from "./PositionedCharacter";
+import PositionedCharacter from './PositionedCharacter';
 
 /**
  * Generates random characters
@@ -35,8 +35,8 @@ export function generateTeam(
   characterCount,
   boardSize
 ) {
-  const playerCoordinates = generateCoordinates("player", boardSize);
-  const npcCoordinates = generateCoordinates("npc", boardSize);
+  const playerCoordinates = generateCoordinates('player', boardSize);
+  const npcCoordinates = generateCoordinates('npc', boardSize);
   let position;
   let idx;
   const teams = [];
