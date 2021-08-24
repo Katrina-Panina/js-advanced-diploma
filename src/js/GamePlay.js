@@ -283,7 +283,9 @@ export default class GamePlay {
     const container = document.querySelector('.tooltips-container');
     container.insertAdjacentHTML('afterbegin', template);
     setTimeout(() => {
-      const tooltipElement = document.querySelector(`.tooltip-container[data-id='${id}'"]);
+      const tooltipElement = document.querySelector(
+        `.tooltip-container[data-id="${id}"]`
+      );
       try {
         tooltipElement.remove();
       } catch (e) {
