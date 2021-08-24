@@ -276,13 +276,11 @@ export default class GameController {
       return acc;
     }, []);
     // Рандомно выбираем чара, которого будем атаковать
-    const attacker =
-      canAttackEnemies[Math.floor(Math.random() * canAttackEnemies.length)];
+    const attacker = canAttackEnemies[Math.floor(Math.random() * canAttackEnemies.length)];
     // Если есть чар, которого можно атаковать, атакуем,
     // иначе находим куда можем сходить
     if (attacker) {
-      const defender =
-        attacker.playerChar[Math.floor(Math.random() * attacker.playerChar.length)];
+      const defender = attacker.playerChar[Math.floor(Math.random() * attacker.playerChar.length)];
       this.attackTheEnemy(attacker.npc, defender);
     } else {
       const npc = npcTeam[Math.floor(Math.random() * npcTeam.length)];
@@ -296,11 +294,7 @@ export default class GameController {
         .filter((position) => !bannedPositions.includes(position));
       const indexStep = () => {
         const idx = Math.floor(Math.random() * arrayOfCell.length);
-        const isStep = isStepPossible(
-          npc.position,
-          arrayOfCell[idx],
-          npc.character.step
-        );
+        const isStep = isStepPossible(npc.position, arrayOfCell[idx], npc.character.step);
         if (!isStep) {
           arrayOfCell.splice(idx, 1);
           return indexStep();
@@ -335,9 +329,9 @@ export default class GameController {
     if (!this.getNPCTeam().length) {
       this.gamePlay.cells.forEach((cell) =>
         cell.classList.remove(
-          "selected-yellow",
-          "selected-green",
-          "selected-red"
+          'selected-yellow',
+          'selected-green',
+          'selected-red'
         )
       );
       this.gamePlay.setCursor(cursors.auto);
