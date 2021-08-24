@@ -56,12 +56,9 @@ export default class GamePlay {
     this.newGameEl = this.container.querySelector('[data-id=action-restart]');
     this.saveGameEl = this.container.querySelector('[data-id=action-save]');
     this.loadGameEl = this.container.querySelector('[data-id=action-load]');
-
     this.newGameEl.addEventListener('click', (event) => this.onNewGameClick(event)
     );
-    this.saveGameEl.addEventListener('click', (event) =>
-      this.onSaveGameClick(event)
-    );
+    this.saveGameEl.addEventListener('click', (event) => this.onSaveGameClick(event));
     this.loadGameEl.addEventListener('click', (event) => this.onLoadGameClick(event)
     );
 
@@ -286,9 +283,7 @@ export default class GamePlay {
     const container = document.querySelector('.tooltips-container');
     container.insertAdjacentHTML('afterbegin', template);
     setTimeout(() => {
-      const tooltipElement = document.querySelector(
-        `.tooltip-container[data-id='${id}'"]`
-      );
+      const tooltipElement = document.querySelector(`.tooltip-container[data-id='${id}'"]);
       try {
         tooltipElement.remove();
       } catch (e) {
