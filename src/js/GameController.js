@@ -89,8 +89,7 @@ export default class GameController {
       // Если персонаж игровой - присваиваем текущего персонажа в переменную this.selectChar
       if (currentChar && currentChar.character.isPlayer) {
         this.selectedChar = currentChar;
-        this.gamePlay.cells.forEach((cell) =>
-          cell.classList.remove("selected-yellow")
+        this.gamePlay.cells.forEach((cell) => cell.classList.remove("selected-yellow")
         );
         this.gamePlay.selectCell(index);
         this.prevSelectedCharIndex = index;
@@ -110,18 +109,12 @@ export default class GameController {
 
     // Если ходить на данную ячейку нельзя -  уведомление пользователю об этом.
     if (!this.stepIsPossible && !isCharacter && this.selectedChar) {
-      this.gamePlay.showTooltip(
-        "Information", "Impossible to go here!", "warning"
-      );
+      this.gamePlay.showTooltip("Information", "Impossible to go here!", "warning");
       return;
     }
 
     // Если атака доступна -  атакуем
-    if (
-      this.attackIsPossible &&
-      this.selectedChar &&
-      this.selectedChar.position !== index
-    ) {
+    if (this.attackIsPossible && this.selectedChar && this.selectedChar.position !== index) {
       this.attackTheEnemy(this.selectedChar, currentChar);
       return;
     }
@@ -134,9 +127,7 @@ export default class GameController {
 
     // Если клик был произведен по ячейке с неигровым персонажей, уведомление пользователю
     if (isCharacter && !currentChar.character.isPlayer) {
-      this.gamePlay.showTooltip(
-        'Information', 'This is not a playable character!', 'danger'
-      );
+      this.gamePlay.showTooltip('Information', 'This is not a playable character!', 'danger');
     }
   }
 
