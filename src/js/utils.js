@@ -22,31 +22,31 @@ function calculateDiffPositions(objectA, objectB, boardSize) {
 
 export function calcTileType(index, boardSize) {
   const fillBoard = [
-    "top-left",
-    ...Array(boardSize - 2).fill("top"),
-    "top-right",
+    'top-left',
+    ...Array(boardSize - 2).fill('top'),
+    'top-right',
     ...Array(boardSize - 2).fill([
-      "left",
-      ...Array(boardSize - 2).fill("center"),
-      "right",
+      'left',
+      ...Array(boardSize - 2).fill('center'),
+      'right',
     ]),
-    "bottom-left",
-    ...Array(boardSize - 2).fill("bottom"),
-    "bottom-right",
+    'bottom-left',
+    ...Array(boardSize - 2).fill('bottom'),
+    'bottom-right',
   ].flat();
   return fillBoard[index];
 }
 
 export function calcHealthLevel(health) {
   if (health < 15) {
-    return "critical";
+    return 'critical';
   }
 
   if (health < 50) {
-    return "normal";
+    return 'normal';
   }
 
-  return "high";
+  return 'high';
 }
 
 /**
