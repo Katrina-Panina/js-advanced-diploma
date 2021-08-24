@@ -89,8 +89,7 @@ export default class GameController {
       // Если персонаж игровой - присваиваем текущего персонажа в переменную this.selectChar
       if (currentChar && currentChar.character.isPlayer) {
         this.selectedChar = currentChar;
-        this.gamePlay.cells.forEach((cell) => cell.classList.remove('selected-yellow')
-        );
+        this.gamePlay.cells.forEach((cell) => cell.classList.remove('selected-yellow'));
         this.gamePlay.selectCell(index);
         this.prevSelectedCharIndex = index;
         this.gamePlay.setCursor(cursors.pointer);
@@ -321,14 +320,18 @@ export default class GameController {
     // Если в команде игрока не осталось чаров, выводим сообщение о проигрыше
     if (!this.getPlayerTeam().length) {
       this.gamePlay.redrawPositions(this.state.teams);
-      GamePlay.showMessage('You Lose!');
+      GamePlay.showMessage("You Lose!");
       this.gamePlay.unsubscribeAllMouseListeners();
       return;
     }
     // Если все чары npc убиты, начинаем новый левел
     if (!this.getNPCTeam().length) {
-      this.gamePlay.cells.forEach((cell) => 
-        cell.classList.remove('selected-yellow', 'selected-green', 'selected-red')
+      this.gamePlay.cells.forEach((cell) =>
+        cell.classList.remove(
+          'selected-yellow',
+          'selected-green',
+          'selected-red'
+        )
       );
       this.gamePlay.setCursor(cursors.auto);
       this.updateState({
@@ -338,7 +341,9 @@ export default class GameController {
       return;
     }
     this.prevSelectedCharIndex = null;
-    this.gamePlay.cells.forEach((cell) => cell.classList.remove('selected-yellow'));
+    this.gamePlay.cells.forEach((cell) =>
+      cell.classList.remove('selected-yellow')
+    );
     this.gamePlay.redrawPositions(this.state.teams);
     if (this.selectedChar) {
       this.gamePlay.selectCell(this.selectedChar.position);
@@ -370,12 +375,18 @@ export default class GameController {
     this.gamePlay.drawUi(themes[this.state.currentLevel - 1]);
     const newPoints =
       this.state.numberOfPoints +
-      this.getPlayerTeam().reduce((acc, prev) => acc + prev.character.health, 0);
+      this.getPlayerTeam().reduce(
+        (acc, prev) => acc + prev.character.health,
+        0
+      );
     this.updateState({
       numberOfPoints: newPoints,
     });
     this.renderScore();
-    const playerCoordinates = generateCoordinates('player', this.gamePlay.boardSize);
+    const playerCoordinates = generateCoordinates(
+      "player",
+      this.gamePlay.boardSize
+    );
     const levelUpTeams = this.state.teams.reduce((acc, prev) => {
       prev.character.levelUp();
       acc.push(prev);
@@ -397,7 +408,8 @@ export default class GameController {
         playerCoordinates.splice(idx, 1);
         acc.push(prev);
         return acc;
-      }, []
+      },
+      []
     );
     this.updateState({
       teams: updateTeams,
@@ -430,7 +442,9 @@ export default class GameController {
     const newPoints =
       this.state.numberOfPoints +
       this.getPlayerTeam().reduce(
-        (acc, prev) => acc + prev.character.health, 0);
+        (acc, prev) => acc + prev.character.health,
+        0
+      );
     this.updateState({
       currentLevel,
       numberOfPoints: newPoints,
@@ -442,10 +456,10 @@ export default class GameController {
 
   // Рендер очков
   renderScore() {
-    const levelElement = this.gamePlay.container.querySelector('.level-value');
-    const scoreElement = this.gamePlay.container.querySelector('.score-value');
+    const levelElement = this.gamePlay.container.querySelector(".level-value");
+    const scoreElement = this.gamePlay.container.querySelector(".score-value");
     const recordElement =
-      this.gamePlay.container.querySelector('.record-value');
+      this.gamePlay.container.querySelector(".record-value");
     levelElement.textContent = this.state.currentLevel;
     scoreElement.textContent = this.state.numberOfPoints;
     const newRecord =
