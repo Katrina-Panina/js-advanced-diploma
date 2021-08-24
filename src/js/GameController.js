@@ -321,19 +321,13 @@ export default class GameController {
     // Если в команде игрока не осталось чаров, выводим сообщение о проигрыше
     if (!this.getPlayerTeam().length) {
       this.gamePlay.redrawPositions(this.state.teams);
-      GamePlay.showMessage("You Lose!");
+      GamePlay.showMessage('You Lose!');
       this.gamePlay.unsubscribeAllMouseListeners();
       return;
     }
     // Если все чары npc убиты, начинаем новый левел
     if (!this.getNPCTeam().length) {
-      this.gamePlay.cells.forEach((cell) =>
-        cell.classList.remove(
-          'selected-yellow',
-          'selected-green',
-          'selected-red'
-        )
-      );
+      this.gamePlay.cells.forEach((cell) => cell.classList.remove('selected-yellow','selected-green','selected-red'));
       this.gamePlay.setCursor(cursors.auto);
       this.updateState({
         playerTurn: false,
@@ -342,9 +336,7 @@ export default class GameController {
       return;
     }
     this.prevSelectedCharIndex = null;
-    this.gamePlay.cells.forEach((cell) =>
-      cell.classList.remove('selected-yellow')
-    );
+    this.gamePlay.cells.forEach((cell) => cell.classList.remove('selected-yellow'));
     this.gamePlay.redrawPositions(this.state.teams);
     if (this.selectedChar) {
       this.gamePlay.selectCell(this.selectedChar.position);
@@ -376,10 +368,7 @@ export default class GameController {
     this.gamePlay.drawUi(themes[this.state.currentLevel - 1]);
     const newPoints =
       this.state.numberOfPoints +
-      this.getPlayerTeam().reduce(
-        (acc, prev) => acc + prev.character.health,
-        0
-      );
+      this.getPlayerTeam().reduce((acc, prev) => acc + prev.character.health, 0);
     this.updateState({
       numberOfPoints: newPoints,
     });
