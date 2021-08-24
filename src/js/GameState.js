@@ -1,6 +1,6 @@
 export default class GameState {
   static from(object) {
-    if (typeof object === "object") {
+    if (typeof object === 'object') {
       return {
         currentLevel: null,
         playerTurn: null,
