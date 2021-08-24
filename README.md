@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/qso43kpwv5ei9j79?svg=true)](https://ci.appveyor.com/project/Katrina-Panina1/js-advanced-diploma)
+
 # AJS. Retro Game
 
 ###### tags: `netology` `advanced js`
